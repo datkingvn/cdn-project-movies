@@ -13,3 +13,28 @@
                 $(".most-view .list-film .item." + type).show();
             })
         })
+
+    jQuery("#btn-toggle-error").on("click", function () {
+        jQuery
+            .ajax({
+                url: URL_POST_REPORT_ERROR,
+                type: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                },
+                data: JSON.stringify({
+                    message: "",
+                }),
+            })
+            .done(function (data) {
+                toastr.success(
+                    "Cảm ơn bạn đã báo cáo - Thanks youu ^^",
+                    "Success!"
+                );
+            });
+
+        jQuery(this).remove();
+    });
